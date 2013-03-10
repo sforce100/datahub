@@ -1,3 +1,4 @@
+
 require "rvm/capistrano"
 require "bundler/capistrano"
 
@@ -8,7 +9,7 @@ set :stages, %w(production staging)
 set :default_stage, "staging"
 
 set :application, "datahub"
-set :repository,  "ssh://git@192.168.9.16:2222/datahub.git"
+set :repository,  "ssh://git@github.com:sforce100/fox-music.git"
 
 # 通过远程缓存发布
 set :deploy_via, :remote_cache
@@ -17,7 +18,7 @@ set :scm, :git
 set :bundle_flags, '--quiet'
 
 set :rvm_ruby_string, 'ruby-1.9.2-p320'
-set :rvm_type, :system
+# set :rvm_type, :system
 
 default_run_options[:pty] = true
 
@@ -25,7 +26,7 @@ namespace :deploy do
   desc "Restart the app after symlinking"
   task :start do
     puts 'before deploy start'
-    try_sudo "god restart datahub"
+    run "god -c /home/hzh/workspace/datahub/config/test.god -D"
   end
 end
 # namespace :deploy do

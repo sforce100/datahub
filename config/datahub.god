@@ -9,8 +9,8 @@ God.watch do |w|
   w.name          = "server" 
   w.interval      = 60.seconds
 
-  w.start         = "cd #{app_path} && #{ruby_path} server.rb -e #{app_env} -d" 
-
+  w.start         = "cd #{app_path} && #{ruby_path} #{app_path}/server.rb -e #{app_env} -d" 
+  puts w.start
   # QUIT gracefully shuts down workers
   w.stop = "kill -QUIT `cat #{app_path}/goliath.pid`"
 
@@ -19,8 +19,8 @@ God.watch do |w|
   w.start_grace   = 20.seconds
   w.pid_file      = "#{app_path}/goliath.pid" 
 
-  w.uid = 'app_user'
-  w.gid = 'app_user'
+  w.uid = 'hzh'
+  w.gid = 'hzh'
 
   w.behavior(:clean_pid_file)
 

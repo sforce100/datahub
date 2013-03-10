@@ -8,7 +8,7 @@ role :app, "0.0.0.0"                          # This may be the same as your `We
 # role :db,  "192.168.30.78", :primary => true # This is where Rails migrations will run
 set :user, "hzh"
 
-set :rvm_ruby_string, 'ruby-1.9.2-p320'
+set :rvm_ruby_string, ENV['GEM_HOME'].gsub(/.*\//,"")
 
 set :branch do
   default_tag = `git tag`.split("\n").last
